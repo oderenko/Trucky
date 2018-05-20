@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Trucky.Interfaces;
 using Trucky.Models.DB;
+using Trucky.Repositories;
 using Trucky.Services;
 
 namespace Trucky {
@@ -32,6 +33,7 @@ namespace Trucky {
       services.AddResponseCompression(options => { options.Providers.Add<GzipCompressionProvider>(); });
 
       services.AddScoped<ITruckyService, TruckyService>();
+      services.AddScoped<ICustomerRepository, CustomerRepository>();
 
       services.AddDbContext<TruckyContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
