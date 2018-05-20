@@ -1,0 +1,6 @@
+﻿CREATE TABLE Goods(
+	Goods_UID int IDENTITY(1,1) NOT NULL CONSTRAINT PK_Goods PRIMARY KEY,
+	Quantity int NOT NULL,
+	Cargo_FID int NOT NULL CONSTRAINT FK_GoodsCargo_Cargo FOREIGN KEY
+		REFERENCES Cargo (Cargo_UID),
+)

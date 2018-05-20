@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trucky", "Trucky\Trucky.csproj", "{9A5A86E9-4D6D-474B-A396-AAFBD220D923}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Trucky.Database", "Trucky.Database\Trucky.Database.sqlproj", "{4D7144ED-23DA-47C5-9674-D8AA197CB82F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A5A86E9-4D6D-474B-A396-AAFBD220D923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A5A86E9-4D6D-474B-A396-AAFBD220D923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A5A86E9-4D6D-474B-A396-AAFBD220D923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A5A86E9-4D6D-474B-A396-AAFBD220D923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D7144ED-23DA-47C5-9674-D8AA197CB82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D7144ED-23DA-47C5-9674-D8AA197CB82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D7144ED-23DA-47C5-9674-D8AA197CB82F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4D7144ED-23DA-47C5-9674-D8AA197CB82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D7144ED-23DA-47C5-9674-D8AA197CB82F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D7144ED-23DA-47C5-9674-D8AA197CB82F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A66C2799-8591-4AFC-A9F5-763DB33491E9}
+	EndGlobalSection
+EndGlobal
