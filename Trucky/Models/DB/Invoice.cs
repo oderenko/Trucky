@@ -7,6 +7,7 @@ namespace Trucky.Models.DB {
   public partial class Invoice {
 
     [Column("Invoice_UID")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int InvoiceId { get; set; }
 
     [Column("DateOFPay")]

@@ -7,6 +7,7 @@ namespace Trucky.Models.DB {
   public partial class Transportation {
 
     [Column("Transportation_UID")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int TransportationId { get; set; }
 
     public DateTime? DeliveryDate { get; set; }

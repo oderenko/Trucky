@@ -13,6 +13,7 @@ namespace Trucky.Models.DB {
     }
 
     [Column("Cargo_UID")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int CargoId { get; set; }
 
     [MaxLength(80)]

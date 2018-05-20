@@ -11,6 +11,7 @@ namespace Trucky.Models.DB {
     }
 
     [Column("lkup_CustomerType_UID")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int LkupCustomerTypeId { get; set; }
 
     [MaxLength(20)]

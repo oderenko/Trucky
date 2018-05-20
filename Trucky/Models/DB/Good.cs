@@ -10,6 +10,7 @@ namespace Trucky.Models.DB {
     }
 
     [Column("Goods_UID")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int GoodsId { get; set; }
 
     public int Quantity { get; set; }

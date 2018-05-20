@@ -11,6 +11,7 @@ namespace Trucky.Models.DB {
     }
 
     [Column("lkup_Position_UID")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int LkupPositionUid { get; set; }
 
     [MaxLength(20)]

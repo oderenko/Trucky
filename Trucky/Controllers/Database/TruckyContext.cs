@@ -2,6 +2,7 @@
 
 namespace Trucky.Models.DB {
   public partial class TruckyContext : DbContext {
+
     public virtual DbSet<Cargo> Cargos { get; set; }
     public virtual DbSet<Customer> Customers { get; set; }
     public virtual DbSet<Employee> Employees { get; set; }
@@ -11,6 +12,10 @@ namespace Trucky.Models.DB {
     public virtual DbSet<LkupPosition> LkupPositions { get; set; }
     public virtual DbSet<Transportation> Transportations { get; set; }
     public virtual DbSet<Truck> Trucks { get; set; }
+
+    public TruckyContext(DbContextOptions<TruckyContext> options) 
+      : base(options) {
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
       if (!optionsBuilder.IsConfigured) {
