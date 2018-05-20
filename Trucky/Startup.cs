@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Serialization;
+using Trucky.Interfaces;
 using Trucky.Models.DB;
+using Trucky.Services;
 
 namespace Trucky {
   public class Startup {
@@ -29,6 +30,8 @@ namespace Trucky {
       // Configure response compression
       services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Fastest);
       services.AddResponseCompression(options => { options.Providers.Add<GzipCompressionProvider>(); });
+
+      services.AddScoped<ITruckyService, TruckyService>();
 
       services.AddDbContext<TruckyContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
