@@ -5,10 +5,10 @@ using Trucky.Interfaces;
 using Trucky.Models.DB;
 
 namespace Trucky.Repositories {
-  public class LokupRepository : ILookupRepository {
+  public class LookupRepository : ILookupRepository {
     private readonly TruckyContext _context;
 
-    public LokupRepository(TruckyContext context) {
+    public LookupRepository(TruckyContext context) {
       _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 

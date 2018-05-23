@@ -1,4 +1,4 @@
-﻿@model Trucky.Models.DB.Customer
+﻿@model Trucky.Models.ViewModels.CustomerViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -38,7 +38,7 @@
             @Html.DisplayNameFor(model => model.CustomerType)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CustomerType.LkupCustomerTypeId)
+            @Html.DisplayFor(model => model.CustomerType)
         </dd>
     </dl>
 </div>

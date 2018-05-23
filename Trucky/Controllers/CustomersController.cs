@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Trucky.Interfaces;
-using Trucky.Models.DB;
+using Trucky.Models.ViewModels;
 
 namespace Trucky.Controllers {
   public class CustomersController : Controller {
@@ -47,7 +45,7 @@ namespace Trucky.Controllers {
     // POST: Customers/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("CustomerId,FullName,PhoneNumber,Email,IsCorporate,CustomerTypeFid")] Customer customer) {
+    public async Task<IActionResult> Create([Bind("CustomerId,FullName,PhoneNumber,Email,IsCorporate,CustomerTypeFid, CustomerType")] CustomerViewModel customer) {
       if (ModelState.IsValid) {
         await _truckyService.CreateCustomer(customer);
         return RedirectToAction(nameof(Index));
@@ -77,7 +75,7 @@ namespace Trucky.Controllers {
     // POST: Customers/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FullName,PhoneNumber,Email,IsCorporate,CustomerTypeFid")] Customer customer) {
+    public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FullName,PhoneNumber,Email,IsCorporate,CustomerTypeFid, CustomerType")] CustomerViewModel customer) {
       if (id != customer.CustomerId) {
         return BadRequest();
       }

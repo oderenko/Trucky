@@ -20,13 +20,7 @@ namespace Trucky {
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
-      services
-        .AddMvcCore()
-        .AddJsonFormatters(settings => {
-          settings.DateFormatString = "MM/dd/yyyy";
-        })
-        .AddAuthorization()
-        .AddDataAnnotations();
+      services.AddMvc();
 
       // Configure response compression
       services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Fastest);
@@ -34,6 +28,7 @@ namespace Trucky {
 
       services.AddScoped<ITruckyService, TruckyService>();
       services.AddScoped<ICustomerRepository, CustomerRepository>();
+      services.AddScoped<ILookupRepository, LookupRepository>();
 
       services.AddDbContext<TruckyContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

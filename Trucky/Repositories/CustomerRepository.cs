@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Trucky.Interfaces;
 using Trucky.Models.DB;
+using Trucky.Models.ViewModels;
 
 namespace Trucky.Repositories {
   public class CustomerRepository : ICustomerRepository {
@@ -29,7 +30,7 @@ namespace Trucky.Repositories {
     public async Task<Customer> Get(int id) {
       return await _context.Customers
           .Include(c => c.CustomerType)
-          .SingleOrDefaultAsync(m => m.CustomerId == id);
+          .FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Customer>> GetAll() {

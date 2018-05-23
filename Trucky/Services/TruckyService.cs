@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Trucky.Interfaces;
 using Trucky.Models.DB;
+using Trucky.Models.ViewModels;
 
 namespace Trucky.Services {
   public class TruckyService : ITruckyService {
@@ -18,13 +20,14 @@ namespace Trucky.Services {
 
     #region constructor
 
-    public TruckyService(ICustomerRepository customerRepository, IEmployeeRepository employeeRepository,
-      ITransportationRepository transportationRepository, IInvoicesRepository invoiceRepository,
-      ILookupRepository lookupRepository) {
+    //public TruckyService(ICustomerRepository customerRepository, IEmployeeRepository employeeRepository,
+    //  ITransportationRepository transportationRepository, IInvoicesRepository invoiceRepository,
+    //  ILookupRepository lookupRepository) {
+    public TruckyService(ICustomerRepository customerRepository, ILookupRepository lookupRepository) {
       _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
-      _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
-      _transportationRepository = transportationRepository ?? throw new ArgumentNullException(nameof(transportationRepository));
-      _invoiceRepository = invoiceRepository ?? throw new ArgumentNullException(nameof(invoiceRepository));
+      //_employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+      //_transportationRepository = transportationRepository ?? throw new ArgumentNullException(nameof(transportationRepository));
+      //_invoiceRepository = invoiceRepository ?? throw new ArgumentNullException(nameof(invoiceRepository));
       _lookupRepository = lookupRepository ?? throw new ArgumentNullException(nameof(lookupRepository));
     }
 
@@ -32,24 +35,29 @@ namespace Trucky.Services {
 
     #region customer methods
 
-    public async Task<IEnumerable<Customer>> GetAllCustomers() {
-      return await _customerRepository.GetAll();
+    public async Task<IEnumerable<CustomerViewModel>> GetAllCustomers() {
+      return (await _customerRepository.GetAll())
+        .Select(a => ModelToView(a))
+        .ToList();
     }
 
-    public async Task CreateCustomer(Customer item) {
-      await _customerRepository.Create(item);
+    public async Task CreateCustomer(CustomerViewModel item) {
+      var customer = ViewToModel(item);
+      await _customerRepository.Create(customer);
     }
 
-    public async Task UpdateCustomer(Customer item) {
-      await _customerRepository.Update(item);
+    public async Task UpdateCustomer(CustomerViewModel item) {
+      var customer = ViewToModel(item);
+      await _customerRepository.Update(customer);
     }
 
     public async Task DeleteCustomer(int id) {
       await _customerRepository.Delete(id);
     }
 
-    public async Task<Customer> GetCustomer(int id) {
-      return await _customerRepository.Get(id);
+    public async Task<CustomerViewModel> GetCustomer(int id) {
+      var customer = (await _customerRepository.Get(id));
+      return ModelToView(customer);
     }
 
     #endregion
@@ -65,5 +73,44 @@ namespace Trucky.Services {
     }
 
     #endregion
+
+    private string DefineIfIsCorporate(bool? isCorporate) {
+      if (!isCorporate.HasValue) {
+        return "no";
+      }
+      else {
+        return isCorporate.Value ? "yes" : "no";
+      }
+    }
+
+    private CustomerViewModel ModelToView(Customer cust) {
+      var custTypes = _lookupRepository.GetCustomerTypes();
+
+      return new CustomerViewModel() {
+        CustomerId = cust.CustomerId,
+        CustomerType = cust.CustomerType.Type,
+        CustomerTypeFid = cust.CustomerTypeFid,
+        CystomreTypes = custTypes,
+        Email = cust.Email,
+        FullName = cust.FullName,
+        IsCorporate = DefineIfIsCorporate(cust.IsCorporate),
+        PhoneNumber = cust.PhoneNumber
+      };
+    }
+
+    public bool DefineIfIsCorporate(string isCorporate) {
+      return (isCorporate == "yes") ? true : false;
+    }
+
+    private Customer ViewToModel(CustomerViewModel view) {
+      return new Customer() {
+        CustomerId = view.CustomerId,
+        CustomerTypeFid = view.CustomerTypeFid,
+        Email = view.Email,
+        FullName = view.FullName,
+        IsCorporate = DefineIfIsCorporate(view.IsCorporate),
+        PhoneNumber = view.PhoneNumber
+      };
+    }
   }
 }

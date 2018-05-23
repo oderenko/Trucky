@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Trucky.Models.DB;
+using Trucky.Models.ViewModels;
 
 namespace Trucky.Interfaces {
   public interface ITruckyService {
     IEnumerable<LkupCustomerType> GetCustomerTypes();
     IEnumerable<LkupPosition> GetPositions();
 
-    Task<IEnumerable<Customer>> GetAllCustomers();
-    Task CreateCustomer(Customer item);
-    Task UpdateCustomer(Customer item);
+    Task<IEnumerable<CustomerViewModel>> GetAllCustomers();
+    Task CreateCustomer(CustomerViewModel item);
+    Task UpdateCustomer(CustomerViewModel item);
     Task DeleteCustomer(int id);
-    Task<Customer> GetCustomer(int id);
+    Task<CustomerViewModel> GetCustomer(int id);
 
     // Task<IEnumerable<Employee>> GetAllEmployees();
     // Task CreateEmployee(Employee item);

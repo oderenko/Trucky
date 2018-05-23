@@ -24,6 +24,8 @@ namespace Trucky.Models.DB {
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
+      base.OnModelCreating(modelBuilder);
+
       Cargo.SetupKeys(modelBuilder);
       Customer.SetupKeys(modelBuilder);
       Employee.SetupKeys(modelBuilder);

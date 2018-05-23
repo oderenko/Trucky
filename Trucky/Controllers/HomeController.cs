@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Trucky.Models;
+using Trucky.Models.ViewModels;
 
-namespace Trucky.Controllers
-{
-    public class HomeController : Controller
+namespace Trucky.Controllers {
+  public class HomeController : Controller
     {
         public IActionResult Index()
         {

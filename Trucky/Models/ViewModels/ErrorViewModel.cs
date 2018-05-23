@@ -1,4 +1,4 @@
-namespace Trucky.Models.ViewmMdels {
+namespace Trucky.Models.ViewModels {
   public class ErrorViewModel {
     public string RequestId { get; set; }
 
